@@ -4,17 +4,13 @@
 
 #include <boost/lexical_cast.hpp>
 
-namespace settable {
-    namespace setter {
-        namespace string2type {
-            namespace helper {
-                template<>
-                int convert<int>(const std::string &value) {
-                    return boost::lexical_cast<int>(value);
-                }
-            }
-        }
-    }
+namespace string2type {
+
+template<>
+int convert<int>(const std::string &value) {
+    return boost::lexical_cast<int>(value);
+}
+
 }
 
 struct foo : settable::settable {
