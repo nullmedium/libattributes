@@ -14,20 +14,12 @@
 #ifndef SETTABLE_HPP
 #define SETTABLE_HPP
 
+#include "string2type.hpp"
+
 #include <map>
 #include <string>
 
-#include <boost/assert.hpp>
 #include <boost/shared_ptr.hpp>
-
-namespace string2type {
-
-template<typename T>
-T convert(const std::string &value);
-
-}
-
-namespace settable {
 
 class abstract_setter {
 public:
@@ -48,10 +40,10 @@ public:
     T &reference;
 };
 
-#define REGISTER_MEMBER(Type, Attribute) \
-    this->register_setter<Type>(#Attribute, this->Attribute);
+#define REGISTER_ATTRIBUTE(Type, Attribute) \
+    this->register_attribute<Type>(#Attribute, this->Attribute);
 
-class settable {
+class attributes {
 public:
     void set_attribute(const std::string &attr, const std::string &value) {
         setters_map::iterator it = setters.find(attr);
@@ -62,7 +54,7 @@ public:
     }
 
     template<typename T>
-    void register_setter(const std::string &name, T &ptr) {
+    void register_attribute(const std::string &name, T &ptr) {
         typedef setter<T> specific_setter;
 
         setter_ptr setter(new specific_setter(ptr));
@@ -76,8 +68,6 @@ private:
 
     setters_map setters;
 };
-
-}
 
 #endif /* SETTABLE_HPP */
 

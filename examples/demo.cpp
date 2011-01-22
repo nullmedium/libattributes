@@ -1,4 +1,4 @@
-#include "settable.hpp"
+#include "attributes.hpp"
 
 #include <iostream>
 
@@ -13,9 +13,9 @@ int convert<int>(const std::string &value) {
 
 }
 
-struct foo : settable::settable {
+struct foo : attributes {
     foo() {
-        REGISTER_MEMBER(int, x);
+        REGISTER_ATTRIBUTE(int, x);
     }
 
     int x;
