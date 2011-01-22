@@ -15,7 +15,7 @@ int convert<int>(const std::string &value) {
 
 struct foo : settable::settable {
     foo() {
-        register_setter<int>("x", &x);
+        REGISTER_MEMBER(int, x);
     }
 
     int x;

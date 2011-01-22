@@ -52,6 +52,9 @@ public:
     void *ptr;
 };
 
+#define REGISTER_MEMBER(Type, Attribute) \
+    this->register_setter<Type>(#Attribute, &Attribute);
+
 class settable {
 public:
     void set_attribute(const std::string &attr, const std::string &value) {
