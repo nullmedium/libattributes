@@ -3,6 +3,7 @@ project (libsettable)
 
 find_package(Boost)
 
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${PROJECT_SOURCE_DIR}/src
+                    ${Boost_INCLUDE_DIRS})
 
 add_subdirectory(examples)
