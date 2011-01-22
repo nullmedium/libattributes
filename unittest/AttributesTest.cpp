@@ -37,17 +37,6 @@ struct test_fixture {
     test object;
 };
 
-BOOST_AUTO_TEST_SUITE(string2type_test)
-
-BOOST_AUTO_TEST_CASE( test1 )
-{
-    int x = string2type::convert<int>("42");
-
-    BOOST_CHECK( x == 42 );
-}
-
-BOOST_AUTO_TEST_SUITE_END()
-
 BOOST_FIXTURE_TEST_SUITE( test_suite, test_fixture )
 
 //____________________________________________________________________________//
