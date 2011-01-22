@@ -21,15 +21,15 @@
 
 #include <boost/shared_ptr.hpp>
 
-class abstract_setter {
+class abstract_attribute {
 public:
     virtual void set_value(const std::string &value) = 0;
 };
 
 template<typename T>
-class setter: public abstract_setter {
+class attribute : public abstract_attribute {
 public:
-    explicit setter(T &object)
+    explicit attribute(T &object)
         : reference(object) {
     }
 
@@ -46,27 +46,27 @@ public:
 class attributes {
 public:
     void set_attribute(const std::string &attr, const std::string &value) {
-        setters_map::iterator it = setters.find(attr);
+        attributes_map::iterator it = attributes.find(attr);
 
-        if (it != setters.end()) {
+        if (it != attributes.end()) {
             it->second->set_value(value);
         }
     }
 
     template<typename T>
-    void register_attribute(const std::string &name, T &ptr) {
-        typedef setter<T> specific_setter;
+    void register_attribute(const std::string &name, T &object) {
+        typedef attribute<T> specific_attribute;
 
-        setter_ptr setter(new specific_setter(ptr));
+        attribute_ptr attribute(new specific_attribute(object));
 
-        setters.insert(std::make_pair(name, setter));
+        attributes.insert(std::make_pair(name, attribute));
     }
 
 private:
-    typedef boost::shared_ptr<abstract_setter> setter_ptr;
-    typedef std::map<std::string, setter_ptr> setters_map;
+    typedef boost::shared_ptr<abstract_attribute> attribute_ptr;
+    typedef std::map<std::string, attribute_ptr> attributes_map;
 
-    setters_map setters;
+    attributes_map attributes;
 };
 
 #endif /* SETTABLE_HPP */
