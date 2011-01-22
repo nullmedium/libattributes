@@ -6,16 +6,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include <iostream>
-#include <boost/lexical_cast.hpp>
-
-namespace string2type {
-
-template<>
-int convert<int>(const std::string &value) {
-    return boost::lexical_cast<int>(value);
-}
-
-}
 
 struct test : attributes {
     test() : x(0) {

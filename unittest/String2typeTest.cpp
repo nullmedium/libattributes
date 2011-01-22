@@ -5,23 +5,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <iostream>
-#include <boost/lexical_cast.hpp>
-
-namespace string2type {
-
-template<>
-int convert<int>(const std::string &value) {
-    return boost::lexical_cast<int>(value);
-}
-
-template<>
-double convert<double>(const std::string &value) {
-    return boost::lexical_cast<double>(value);
-}
-
-}
-
 BOOST_AUTO_TEST_SUITE(string2type_test)
 
 BOOST_AUTO_TEST_CASE( test1 )

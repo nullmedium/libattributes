@@ -16,10 +16,14 @@
 
 #include <string>
 
+#include <boost/lexical_cast.hpp>
+
 namespace string2type {
 
 template<typename T>
-T convert(const std::string &value);
+T convert(const std::string &value) {
+    return boost::lexical_cast<T>(value);
+}
 
 }
 
