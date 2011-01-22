@@ -20,6 +20,9 @@
 
 namespace string2type {
 
+//!
+//! string-to-type conversion function.
+//!
 template<typename T>
 T convert(const std::string &value) {
     return boost::lexical_cast<T>(value);

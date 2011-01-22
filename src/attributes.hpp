@@ -21,22 +21,44 @@
 
 #include <boost/shared_ptr.hpp>
 
+//!
+//! \class abstract_attribute
+//! \brief Abstract base class for attributes.
+//!
 class abstract_attribute {
 public:
+
+    //!
+    //! Pure virtual method. 
+    //!
     virtual void set_value(const std::string &value) = 0;
 };
 
+//!
+//! \class attribute
+//! \brief wrapper class for class attributes.
+//!
 template<typename T>
 class attribute : public abstract_attribute {
 public:
+
+    //!
+    //! \brief Constructor
+    //!
     explicit attribute(T &object)
         : reference(object) {
     }
 
+    //!
+    //! \brief Implementation of set_value method.
+    //!
     virtual void set_value(const std::string &value) {
         reference = string2type::convert<T>(value);
     }
 
+    //!
+    //! \brief Implementation of get_value method.
+    //!
     virtual T& get_value() const {
         return reference;
     }
@@ -45,11 +67,21 @@ private:
     T &reference;
 };
 
+//!
+//! \brief Convenience macro for attribute registration.
+//!
 #define REGISTER_ATTRIBUTE(Type, Attribute) \
     this->register_attribute<Type>(#Attribute, this->Attribute);
 
+//!
+//! \class attributes
+//! \brief Provides attribute registration facility.
+//!
 class attributes {
 public:
+    //!
+    //! Sets named attribute \e attr to value \e value.
+    //!
     void set_attribute(const std::string &attr, const std::string &value) {
         attributes_map::iterator it = attributes.find(attr);
 
@@ -58,6 +90,9 @@ public:
         }
     }
 
+    //!
+    //! Registers attribute \e object with name \e name.
+    //!
     template<typename T>
     void register_attribute(const std::string &name, T &object) {
         typedef attribute<T> specific_attribute;
