@@ -37,6 +37,11 @@ public:
         reference = string2type::convert<T>(value);
     }
 
+    virtual T& get_value() const {
+        return reference;
+    }
+
+private:
     T &reference;
 };
 
