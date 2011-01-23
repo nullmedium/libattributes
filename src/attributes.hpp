@@ -1,4 +1,4 @@
-//! \file settable.hpp
+//! \file attributes.hpp
 //! \brief C++ Library (header-only).
 
 //  settable.hpp  ------------------------------------------------------------//
