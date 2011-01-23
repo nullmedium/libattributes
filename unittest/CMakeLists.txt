@@ -2,6 +2,10 @@ cmake_minimum_required (VERSION 2.6)
 
 link_directories(${Boost_LIBRARY_DIRS})
 
+add_executable(AttributeTest AttributeTest.cpp)
+target_link_libraries(AttributeTest ${Boost_LIBRARIES})
+add_test(AttributeTest AttributeTest)
+
 add_executable(AttributesTest AttributesTest.cpp)
 target_link_libraries(AttributesTest ${Boost_LIBRARIES})
 add_test(AttributesTest AttributesTest)
