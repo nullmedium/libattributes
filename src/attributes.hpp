@@ -27,6 +27,8 @@
 //! \class abstract_attribute
 //! \brief Abstract base class for attributes.
 //!
+//! The class can't be instantiated.
+//!
 class abstract_attribute {
 public:
 
@@ -61,9 +63,11 @@ public:
 template<typename T>
 class attribute : public abstract_attribute {
 public:
-
     //!
     //! \brief Constructor
+    //!
+    //! Constructs an attribute object for \e object. \e object needs to
+    //! be an Assignable type.
     //!
     //! \param object Reference to object of type T.
     //!
@@ -98,7 +102,7 @@ public:
     }
 
 private:
-    T &reference;
+    T &reference; //!< Reference to T object.
 };
 
 //!
@@ -115,6 +119,8 @@ class attributes {
 public:
     //!
     //! Sets named attribute \e attr to value \e value.
+    //!
+    //! Calling this method with an registered attribute \e attr has no effect.
     //!
     void set_attribute(const std::string &attr, const std::string &value) {
         attributes_map::iterator it = attributes.find(attr);
@@ -140,7 +146,7 @@ private:
     typedef boost::shared_ptr<abstract_attribute> attribute_ptr;
     typedef std::map<std::string, attribute_ptr> attributes_map;
 
-    attributes_map attributes;
+    attributes_map attributes; //!< internal attributes map.
 };
 
 #endif /* SETTABLE_HPP */
