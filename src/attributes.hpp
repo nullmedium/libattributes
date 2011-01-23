@@ -38,7 +38,11 @@ public:
 
 //!
 //! \class attribute
-//! \brief wrapper class for class attributes.
+//! \brief attribute class.
+//!
+//! Wraps a reference to an object of type T.
+//!
+//! \tparam T Assignable type
 //!
 template<typename T>
 class attribute : public abstract_attribute {
