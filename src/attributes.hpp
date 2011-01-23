@@ -19,6 +19,8 @@
 #include <map>
 #include <string>
 
+#include <boost/concept/assert.hpp>
+#include <boost/concept_check.hpp>
 #include <boost/shared_ptr.hpp>
 
 //!
@@ -47,6 +49,7 @@ public:
     //!
     explicit attribute(T &object)
         : reference(object) {
+            BOOST_CONCEPT_ASSERT((boost::Assignable<T>));
     }
 
     //!

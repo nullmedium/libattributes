@@ -16,6 +16,8 @@
 
 #include <string>
 
+#include <boost/concept/assert.hpp>
+#include <boost/concept_check.hpp>
 #include <boost/lexical_cast.hpp>
 
 namespace string2type {
@@ -25,6 +27,8 @@ namespace string2type {
 //!
 template<typename T>
 T convert(const std::string &value) {
+    BOOST_CONCEPT_ASSERT((boost::Assignable<T>));
+
     return boost::lexical_cast<T>(value);
 }
 
