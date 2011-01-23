@@ -31,7 +31,17 @@ class abstract_attribute {
 public:
 
     //!
-    //! Pure virtual method. 
+    //! \brief Constructor.
+    //!
+    abstract_attribute() {}
+
+    //!
+    //! \brief Destructor.
+    //!
+    virtual ~abstract_attribute() {}
+
+    //!
+    //! \brief Pure virtual method. 
     //! 
     //! This method needs to be implemented in classes derived from
     //! \e abstract_attribute.
@@ -58,8 +68,15 @@ public:
     //! \param object Reference to object of type T.
     //!
     explicit attribute(T &object)
-        : reference(object) {
+        : abstract_attribute()
+        , reference(object) {
             BOOST_CONCEPT_ASSERT((boost::Assignable<T>));
+    }
+
+    //!
+    //! \brief Destructor
+    //!
+    virtual ~attribute() {
     }
 
     //!
