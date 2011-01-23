@@ -1,7 +1,7 @@
 //! \file string2type.hpp
 //! \brief C++ Library (header-only).
 
-//  settable.hpp  ------------------------------------------------------------//
+//  string2type.hpp  ------------------------------------------------------------//
 
 // 
 // Copyright Jens Luedicke 2010

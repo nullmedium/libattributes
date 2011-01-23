@@ -1,7 +1,7 @@
 //! \file attributes.hpp
 //! \brief C++ Library (header-only).
 
-//  settable.hpp  ------------------------------------------------------------//
+//  attributes.hpp  ----------------------------------------------------------//
 
 // 
 // Copyright Jens Luedicke 2010
@@ -32,6 +32,10 @@ public:
 
     //!
     //! Pure virtual method. 
+    //! 
+    //! This method needs to be implemented in classes derived from
+    //! \e abstract_attribute.
+    //!
     //!
     virtual void set_value(const std::string &value) = 0;
 };
@@ -42,7 +46,7 @@ public:
 //!
 //! Wraps a reference to an object of type T.
 //!
-//! \tparam T Assignable type
+//! \tparam T Assignable type.
 //!
 template<typename T>
 class attribute : public abstract_attribute {
@@ -51,6 +55,8 @@ public:
     //!
     //! \brief Constructor
     //!
+    //! \param object Reference to object of type T.
+    //!
     explicit attribute(T &object)
         : reference(object) {
             BOOST_CONCEPT_ASSERT((boost::Assignable<T>));
@@ -58,6 +64,10 @@ public:
 
     //!
     //! \brief Implementation of set_value method.
+    //!
+    //! This method assigns \e value to \e this.
+    //!
+    //! \param value String
     //!
     virtual void set_value(const std::string &value) {
         reference = string2type::convert<T>(value);
